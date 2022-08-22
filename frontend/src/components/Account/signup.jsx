@@ -34,7 +34,8 @@ export const SignUP = ()=>{
       const PostData = async()=>{
         
            const {email , password} = users 
-            const res =  await fetch("/register" , {
+            const res =  await fetch("https://backendsasi1.herokuapp.com/register" , {
+              //"proxy" : "http://localhost:2345", 
               method : "POST" , 
               headers : {
                "Content-Type" : "application/json"
@@ -44,15 +45,15 @@ export const SignUP = ()=>{
  
             const data = await res.json() ;
               
-              if(data.status === 422 ||  !data ){
-                       window.alert("Invalied Registration") ; 
+              if(res.status === 400 ||  !data ){
+                       window.alert("User Already Registred") ; 
                          console.log("Invalied Registration") 
                         
               } else{
                 window.alert("Registration Sucessfull");
                 setGet(true);
                 console.log("Sucessful Registration");
-                navigate.push("/");
+                navigate("/");
               }
          
      }

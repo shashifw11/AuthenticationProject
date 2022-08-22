@@ -35,7 +35,8 @@ export const Login = ()=>{
     const PostData = async()=>{
         
       const {email , password} = users 
-       const res =  await fetch("/login" , {
+       const res =  await fetch("https://backendsasi1.herokuapp.com/login" , {
+       
          method : "POST" , 
          headers : {
           "Content-Type" : "application/json"
@@ -45,7 +46,7 @@ export const Login = ()=>{
 
        const data = await res.json() ;
          
-         if(data.status === 422 ||  !data ){
+         if(res.status === 400 ||  !data ){
               window.alert("Invalied email or Password") ; 
                 console.log("Invalied Login") 
                    
@@ -53,7 +54,7 @@ export const Login = ()=>{
            window.alert("Login Sucessfull");
            setGet(true);
            console.log("Sucessful Login");
-          //navigate.push("/");
+          navigate("/home");
          }
     
 }
